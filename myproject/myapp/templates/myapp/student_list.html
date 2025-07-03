@@ -1,0 +1,4 @@
+{% extends 'base_generic.html' %} {% block content %} {% for object in students
+%}
+<a href="">{% url 'myapp:yourmodel_detail' object.pk %}</a>
+{% endfor %} {% endblock %}

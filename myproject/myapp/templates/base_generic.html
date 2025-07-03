@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      {% if user.is_authenticated %}
+      <p>Welcome, {{ user.username }}! (or {{ user.email }})</p>
+      <form
+        method="post"
+        action="{% url 'account_logout' %}"
+        style="display: inline"
+      >
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+      {% else %}
+      <a href="{% url 'account_login' %}">Login</a>
+      <a href="{% url 'account_signup' %}">Sign Up</a>
+      {% endif %} {% block content %}
+      <!-- Content will go here -->
+      {% endblock %}
+    </main>
+  </body>
+</html>
