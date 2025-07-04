@@ -1,5 +1,6 @@
 {% extends 'base_generic.html' %} {% block content %}
-<div>
-  Name: {{ form.as_ul}} Major: {{ form.as_ul}} Enrollment_date: {{ form.as_ul}}
-</div>
+<form method="post">
+  {% csrf_token %} {{ form.as_ul }}
+  <button>Update</button>
+</form>
 {% endblock %}

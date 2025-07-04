@@ -23,17 +23,18 @@ class StudentCreateView(CreateView):
     # form_class = StudentForm
     fields = ['name', 'major', 'enrollment_date']
     template_name = 'myapp/student_form.html'
-    success_url = reverse_lazy('myapp:student_list')
+    success_url = reverse_lazy('students')
 
 
 class StudentUpdateView(UpdateView):
     model = Student
     template_name = 'myapp/student_form.html'
     fields = ['name', 'major', 'enrollment_date']
-    success_url = reverse_lazy('myapp:student_list')
+    success_url = reverse_lazy('students')
 
 
 class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'myapp/student_confirm_delete.html'
-    success_url = reverse_lazy('myapp:student_list')
+    fields = ['name', 'major', 'enrollment_date']
+    success_url = reverse_lazy('students')

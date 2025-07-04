@@ -1,7 +1,13 @@
 {% extends 'base_generic.html' %} {% block content %}
-<div>{% student.name %}</div>
-<div>{% student.major %}</div>
-<div>{% student.enrollment_date %}</div>
-<a href="student_confirm_delete.html">Delete Student</a>
-<a href="student_form.html">Update Student</a>
+<div>{{ student.name }}</div>
+<div>{{ student.major }}</div>
+<div>{{ student.enrollment_date }}</div>
+<ul>
+  <li>
+    <a href="{% url 'student_delete' student.pk %}">Delete Student</a>
+  </li>
+  <li>
+    <a href="{% url 'student_update' student.pk %}">Update Student</a>
+  </li>
+</ul>
 {% endblock %}
