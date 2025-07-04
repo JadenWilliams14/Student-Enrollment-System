@@ -7,14 +7,15 @@
   <body>
     <main>
       {% if user.is_authenticated %}
-      <p>Welcome, {{ user.username }}! 
-          <a href="{% url 'students' %}">Student List</a>
+      <p>
+        Welcome, {{ user.email }}!
+        <a href="{% url 'students' %}">Student List</a>
       </p>
-      
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-      </form>
+      <a href="{% url 'account_logout' %}">Logout</a>
 
+      {% else %}
+      <a href="{% url 'account_login' %}">Login</a>
+      <a href="{% url 'account_signup' %}">Sign Up</a>
       {% endif %} {% block content %}
       <!-- Content will go here -->
       {% endblock %}

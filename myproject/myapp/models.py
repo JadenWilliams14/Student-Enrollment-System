@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.conf import settings
 # Create your models here.
 
 
@@ -9,6 +9,12 @@ class Student(models.Model):
     name = models.CharField(max_length=50, null=False)
     major = models.CharField(max_length=50)
     enrollment_date = models.DateField()
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        default=1,
+        related_name='%(class)s_items'
+    )
 
     def __str__(self):
         return f"{self.student} - {self.name} - {self.major} - {self.enrollment_date}"

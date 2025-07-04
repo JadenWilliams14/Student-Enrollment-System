@@ -3,11 +3,13 @@
 <div>Major: {{ student.major }}</div>
 <div>Enrollment Date: {{ student.enrollment_date }}</div>
 <ul>
+  {% if user.is_staff %}
   <li>
     <a href="{% url 'student_delete' student.pk %}">Delete Student</a>
   </li>
   <li>
     <a href="{% url 'student_update' student.pk %}">Update Student</a>
   </li>
+  {% endif %}
 </ul>
 {% endblock %}
