@@ -21,7 +21,7 @@ class StudentDetailView(DetailView):
 class StudentCreateView(CreateView):
     model = Student
     # form_class = StudentForm
-    fields = ['name', 'major', 'enrollment_date']
+    fields = ['student', 'name', 'major', 'enrollment_date']
     template_name = 'myapp/student_form.html'
     success_url = reverse_lazy('students')
 

@@ -1,6 +1,9 @@
 {% extends 'base_generic.html' %} {% block content %}
 <form method="post">
-  {% csrf_token %} {{ form.as_ul }}
+  {% csrf_token %} {{ form.as_ul }} {% if 'student' in form.fields %}
+  <button>Create</button>
+  {% else %}
   <button>Update</button>
+  {% endif %}
 </form>
 {% endblock %}
