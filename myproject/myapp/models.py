@@ -16,6 +16,16 @@ class Student(models.Model):
         related_name='%(class)s_items'
     )
 
+    # Added save logic because I was running into null error when creating new student's as the id would not auto-populate
+    def save(self, *args, **kwargs):
+        if self.student is None:
+            last_student = Student.objects.order_by('student').last()
+            if last_student:
+                self.student = last_student.student + 1
+            else:
+                self.student = 1
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.student} - {self.name} - {self.major} - {self.enrollment_date}"
 
