@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "rest_framework",
+    "drf_spectacular",
+    "django_filters",
     "myapp",
 
     "allauth",
@@ -94,6 +97,33 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     }
+}
+
+# DRF seetings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # Use SessionAuthentication to leverage Django's session framework
+        # This works well when the API is used by the same web frontend
+        'rest_framework.authentication.SessionAuthentication',
+        # Include BasicAuthentication for simple username/password auth if needed,
+        # but SessionAuthentication is primary for web browser interaction.
+        # 'rest_framework.authentication.BasicAuthentication',
+        # TokenAuthentication is another option for non-browser clients
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # Require users to be authenticated for all API access by default
+        'rest_framework.permissions.IsAuthenticated',
+        # Alternatives:
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly' # Allows anonymous GET requests
+        # 'rest_framework.permissions.AllowAny' # No restrictions (use carefully!)
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5  # Set default number of items per page
 }
 
 MIDDLEWARE = [
