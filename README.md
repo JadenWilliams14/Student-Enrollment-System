@@ -12,7 +12,9 @@
    
    a. If you need a secret_key generate one using `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in terminal
 
-   b. You will need to get Google_Client information through google
+   b. Replace database information with your corresponding database and user information
+
+   c. You will need to get Google_Client information through google
 
 ## How to run migrations
  - Type `docker compose exec web python manage.py migrate` into terminal
