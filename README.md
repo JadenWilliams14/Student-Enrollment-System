@@ -1,25 +1,26 @@
 # Student-Enrollment-System
 
-## Added Django Rest Framework
+## How to build and run the application
+1. Make sure that you have Docker Engine and Dcocker Compose V2 installed on your machine and open docker desktop
+2. Navigate to the terminal path that contains your 'myproject' folder
+3. Run `docker compose build`
+4. Run `docker compose up -d`
 
-## API url: /api/students
+## How to set up .env file
+1. Copy the information in env.example and paste it into a .env file at the same level
+2. Replace all of the variables besides DEBUG with values relevant to your set-up
+   a. If you need a secret_key generate one using `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in terminal
+   b. You will need to get Google_Client information through google
 
-## Currently, only the Student model is exposed via the API
+## How to run migrations
+ - Type `docker compose exec web python manage.py migrate` into terminal
 
-## Instructions on testing API
-* In terminal, start the server using: `$ python manage.py runserver`
-* Navigate to `http://127.0.0.1:8000/accounts/login/` and login
-* You can now go to `http://127.0.0.1:8000/api/students/` to see the list of students as well as filtering and CRUD options
-* What is displayed is the first 5 students in terms of 'student' id. This is because the pagination is set to 5 students per page, you can see the next 5 students in the database, by typing `?page=2` and so on.
-* To filter the shown list of students, you can use the 'filters' button to only show specific entries; for 'name' and 'student' id, terms that are present in either the name or major field, or order how the list is displayed.
-
-  *  You can filter the list for a specific 'name' or 'student' id by using the url and providing a case-sensitive field and value (`http://127.0.0.1:8000/api/students/?name=John+Doe` or `http://127.0.0.1:8000/api/students/?student=1`)
-  *  You can search for a term in 'name' or 'major' of a student by using `http://127.0.0.1:8000/api/students/?search=term` such as `http://127.0.0.1:8000/api/students/?search=Doe`
-  *  You can order the list by 'student' id or 'enrollment_date' using `http://127.0.0.1:8000/api/students/?ordering=-student` (student id's descending) or `http://127.0.0.1:8000/api/students/?ordering=enrollment_date` (enrollment_date ascending)
-  *  You can combine filters by adding & between them :`http://127.0.0.1:8000/api/students/?ordering=enrollment_date&search=e`
-  *  You can create a new student by adding their 'name', 'major', 'enrollment_date' and pressing post.
-        *  The student will be added to the list with the highest number by 1.
-* You can get a specific Student by adding their id after /students/ in URL: `http://127.0.0.1:8000/api/students/2/`
-* At this point if you are the user that created that student, you can either put or patch an update to that student or delete that student using the buttons on the page.
-* If you are not logged in as the one that created the student, you will only be able to view the details.
-
+## How to access the running application
+1. You will need to create a superuser for the application in order to use CRUD operations on the model objects
+   a. Type `docker ps` to see the name of the containers
+   b. Run `docker exec -it <container_name> bash` on the web container (for me it was django_web)
+   c. Within the bash type `python manage.py createsuperuser` and go through the steps to create user
+2. In a browser type `localhost:8000/myapp` into the address bar
+3. This will redirect you to the login page where you can login using your newly created user
+4. Now you have access to the application and can add new students using the webpage
+5. To access the api go to `localhost:8000/api/students/` 
