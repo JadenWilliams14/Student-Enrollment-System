@@ -9,7 +9,9 @@
 ## How to set up .env file
 1. Copy the information in env.example and paste it into a .env file at the same level
 2. Replace all of the variables besides DEBUG with values relevant to your set-up
+   
    a. If you need a secret_key generate one using `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in terminal
+
    b. You will need to get Google_Client information through google
 
 ## How to run migrations
@@ -17,10 +19,13 @@
 
 ## How to access the running application
 1. You will need to create a superuser for the application in order to use CRUD operations on the model objects
+
    a. Type `docker ps` to see the name of the containers
+
    b. Run `docker exec -it <container_name> bash` on the web container (for me it was django_web)
+
    c. Within the bash type `python manage.py createsuperuser` and go through the steps to create user
-2. In a browser type `localhost:8000/myapp` into the address bar
-3. This will redirect you to the login page where you can login using your newly created user
-4. Now you have access to the application and can add new students using the webpage
-5. To access the api go to `localhost:8000/api/students/` 
+3. In a browser type `localhost:8000/myapp` into the address bar
+4. This will redirect you to the login page where you can login using your newly created user
+5. Now you have access to the application and can add new students using the webpage
+6. To access the api go to `localhost:8000/api/students/` 
