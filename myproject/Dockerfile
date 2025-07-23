@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # 4. Install system dependencies if needed (e.g., for psycopg)
-# RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
 # (Note: Using psycopg[binary] often avoids needing system deps)
 
 # 5. Install Python dependencies
