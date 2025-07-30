@@ -37,7 +37,10 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = []
+# Reads comma-separated string
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+# Reads comma-separated string
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[])
 
 
 # Application definition
@@ -74,7 +77,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 LOGIN_REDIRECT_URL = '/myapp/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/login'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/login/'
 
 # myproject/settings.py (add this dictionary)
 # Import env at the top if not already present
