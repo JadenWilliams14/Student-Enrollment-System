@@ -42,6 +42,14 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 # Reads comma-separated string
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[])
 
+# Required for Allauth/Google OAuth when running behind an HTTPS proxy like Nginx
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True  # Redirects all HTTP requests to HTTPS
+
+# Add this for security in production if you don't already have it
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
