@@ -1,5 +1,5 @@
 # 1. Use an official Python runtime as a parent image (use a specific slim version)
-FROM python:3.12-slim-bookworm 
+FROM python:3.12.11-slim-bookworm 
 
 # 2. Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1  
