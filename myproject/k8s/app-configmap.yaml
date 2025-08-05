@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+data:
+  DEBUG: "True"
+  ALLOWED_HOSTS: "*" # Be cautious with '*' in production
+  # Add other non-secret env vars if needed
